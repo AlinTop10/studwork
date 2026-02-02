@@ -1,0 +1,109 @@
+/* --- WELCOME BLOCK (HERO) --- */
+.items{
+    background: #fff;
+    color: #222;
+        width: 1280px;
+    margin: 50px auto;
+}
+.welcome-block{
+  height: 650px;
+  display: flex;
+  place-items: center;
+}
+
+.welcome-block h1{
+  font-size: 52px;
+}
+
+.welcome-block h2{
+  font-size: 42px;
+  font-weight: 450;
+}
+
+.welcome-block h3{
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.first-blok{
+  align-content: center;
+  width: 55%;
+}
+
+/* titlul colorat */
+.title{
+  background: linear-gradient(to right, #4824ff, #4824ff, 
+  #85ebff, #eeebff, #4824ff, #4824ff);
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: gredientAnimation 5s linear infinite;
+}
+
+@keyframes gredientAnimation {
+  0% { background-position: 200% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* --- IMAGE --- */
+
+.main-image-box{
+  width: 55%;
+  margin-top: 2%;
+}
+
+.image{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 50px;
+}
+
+/* --- DESPRE NOI --- */
+
+.service-block{
+  height: 800px;
+  margin-left: -5vw;
+  margin-right: -5vw;
+  padding: 0 5vw;
+  background: #fbfaff;
+  align-content: center;
+}
+
+.service-block h1{
+  margin-bottom: 25px;
+}
+
+.service-block p{
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* tag-uri */
+.tags{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0 35px 0;
+}
+
+.tags .tag{
+  display: flex;
+  font-size: 24px;
+  font-weight: 500;
+  background: #eeebff;
+  color: #4824ff;
+  margin: 12px 8px;
+  border-radius: 20px;
+  padding: 0 18px;
+  align-items: center;
+}
+
+.tags .tag .tag-icon{
+  margin: -8px;
+  padding: 0;
+  position: relative;
+  content: url(../img/icon.png); /* ✅ mai sigur decât ./img */
+  background: none;
+  scale: 0.33;
+  height: 50px;
+}

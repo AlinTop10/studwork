@@ -1,0 +1,79 @@
+/* --- HEADER --- */
+
+header {
+  width: 100%;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  color: #222;
+      width: 1280px;
+    margin: 50px auto;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* --- NAVIGATION --- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav li {
+  cursor: pointer;
+}
+
+/* link-uri simple (Despre noi / Contacte) */
+.nav li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav li a:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+/* --- AUTH BUTTONS --- */
+
+.nav li.auth {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 18px;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none; /* important pentru <Link> */
+  transition: opacity 300ms ease, transform 200ms ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn.login {
+  background: none;
+  border: 1px solid #222;
+  color: #222;
+}
+
+.btn.register {
+  background: #222;
+  border: 1px solid #222;
+  color: #fff;
+}
