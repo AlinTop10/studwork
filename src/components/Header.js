@@ -13,8 +13,7 @@ export default function Header() {
                   <li><a href='#contacte'>Contacte</a></li>
                   <li className='auth'>
                     <Link to="/login" className="btn login">Log in</Link>
-                    {/* <button className='btn login'>Log in</button> */}
-                    <button className='btn register'>Reg in</button>
+                    <Link to="/reg" className='btn register'>Reg in</Link>
                   </li>
               </ul>
             </nav>

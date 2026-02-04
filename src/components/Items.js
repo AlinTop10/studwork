@@ -41,15 +41,27 @@ export default function Items() {
             </p>
 
             <div className="tags">
-              <p className='tag'><p className='tag-icon'/>
-              Comunicare clară</p>
-              <p className='tag'><p className='tag-icon'/>
-              Oameni verificați</p>
-              <p className='tag'><p className='tag-icon'/>
-              Colaborări corecte și sigure</p>
-              <p className='tag'><p className='tag-icon'/>
-              Ajutor rapid</p>
+              <p className="tag">
+                <span className="tag-icon"></span>
+                Comunicare clară
+              </p>
+
+              <p className="tag">
+                <span className="tag-icon"></span>
+                Oameni verificați
+              </p>
+
+              <p className="tag">
+                <span className="tag-icon"></span>
+                Colaborări corecte și sigure
+              </p>
+
+              <p className="tag">
+                <span className="tag-icon"></span>
+                Ajutor rapid
+              </p>
             </div>
+
 
             <p style={{ fontSize: "27px"}}> 
               Ne adresăm celor care caută <span style={{ color: "#4824ff" }}>soluții simple </span> pentru activități de zi cu zi: curățenie, mutări,<br/> 

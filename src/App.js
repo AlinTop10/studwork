@@ -1,20 +1,17 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Items from "./components/Items";
+
 import Log from "./page/log";
 import { Route, Routes } from "react-router-dom";
+import Main from "./page/main";
+import Mains from "./page/mains";
 
 function App() {
   return (
-    <div className="wrapper"> 
-      {/* <Header />
-      <Routes>
-        <Route path="/" element={<Items />}/>
-        <Route path="/login" element={<Log />}/>
-      </Routes>
-       <Footer />  */}
-        <Log/>
-    </div>
+    <Main/>
+      // <Routes>
+      //   <Route path="/" element={<Mains />}/>
+      //   <Route path="/login" element={<Log />}/>
+      //   <Route path="/reg" element={<Log />}/>
+      // </Routes>
   );
 }
 
