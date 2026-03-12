@@ -1,18 +1,13 @@
 
-import Log from "./page/log";
-import { Route, Routes } from "react-router-dom";
-import Main from "./page/main";
-import Mains from "./page/mains";
+import React from "react";
+import AppRoutes from "./router/AppRoutes";
 
-function App() {
+const App = () => {
   return (
-    <Main/>
-      // <Routes>
-      //   <Route path="/" element={<Mains />}/>
-      //   <Route path="/login" element={<Log />}/>
-      //   <Route path="/reg" element={<Log />}/>
-      // </Routes>
+    <div>
+      <AppRoutes/>
+    </div>
   );
-}
+};
 
 export default App;

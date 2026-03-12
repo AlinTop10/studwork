@@ -1,6 +1,202 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px; /* ca sa nu lipeasca de margini */
+}
+
+.header {
+  background: #fff;
+  padding: 20px 0; /* “aer” sus/jos */
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* container + layout (cum ai) */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* SIDEBAR */
 .sidebar {
-    display: flex;
-    width: 252px;
-    height: 100vh;
-    background: blue;
+  flex: 0 0 260px;
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+
+  background: #fff;
+  border: 1px solid #e9e9ef;
+  border-radius: 18px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* user card */
+.sb-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f7f7ff;
+  border: 1px solid #ececff;
+}
+
+.sb-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  background: #4824ff;
+  color: white;
+}
+
+.sb-name {
+  font-weight: 600;
+}
+
+.sb-role {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* nav */
+.sb-nav {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sb-item {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  color: #222;
+  transition: background 180ms ease, border 180ms ease, transform 120ms ease;
+}
+
+.sb-item i {
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+.sb-item:hover {
+  background: #f5f5f7;
+  border-color: #ececf2;
+  transform: translateY(-1px);
+}
+
+.sb-item.active {
+  background: #4824ff;
+  border-color: #4824ff;
+  color: white;
+}
+
+.sb-item.active i {
+  opacity: 1;
+}
+
+
+/* CONTENT */
+.content {
+  flex: 1;
+  min-height: 100vh;
+}
+
+.content-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.content-title{
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.content-subtitle{
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+.content-primary{
+  border: 1px solid #4824ff;
+  background: #4824ff;
+  color: #fff;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-card{
+  background: #fff;
+  border: 1px solid #e9e9ef;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.page-card p {
+  margin-top: 10px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.page-hint {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hint-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.85;
+}
+
+.hint-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: #4824ff;
+  display: inline-block;
 }
