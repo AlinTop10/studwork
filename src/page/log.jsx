@@ -12,8 +12,8 @@ export default function Log() {
             <h1>Login</h1>
 
             <div className="input-box">
-              <input type="text" placeholder="Username" required />
-              <i className="bx bxs-user"></i>
+              <input type="email" placeholder="Email" required />
+              <i className="bx bxs-envelope"></i>
             </div>
 
             <div className="input-box">
