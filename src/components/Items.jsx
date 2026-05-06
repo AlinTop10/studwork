@@ -1,6 +1,6 @@
 import React from 'react';
 import bg from "../img/bg.png";
-import  "./Itemss.css";
+import  "../css/Itemss.css";
 
 export default function Items() {
   return (
