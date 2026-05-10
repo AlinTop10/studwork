@@ -7,11 +7,11 @@ import Log from "../page/log"
 
 const AppRoutes = () => {
   return (
-    // <Main/>
     <Routes>
       <Route path="/" element={<Mains />}/> 
       <Route path="/login" element={<Log/>}/>
       <Route path="/reg" element={<Log/>}/>
+      <Route path='/main' element={<Main/>}/>
     </Routes>
   )
 }
