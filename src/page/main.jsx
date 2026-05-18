@@ -1,7 +1,22 @@
 import Footer from "../components/Footer";
-import "./main.css"
+import "./main.css";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../services/account";
 
 export default function Main() {
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+    try {
+        await logoutUser();
+    } catch (error) {
+        console.log("Logout error:", error);
+    } finally {
+        localStorage.removeItem("token");
+        navigate("/login", { replace: true });
+    }
+    };
+
     return (
         <>
             <header>
@@ -11,7 +26,9 @@ export default function Main() {
                     <ul className='nav'>
                         <li><a href='#contacte'>Contacte</a></li>
                         <li className='auth'>
-                            <button className='btn register'>Log out</button>
+                            <button className='btn register' onClick={handleLogout}>
+                                Log out
+                            </button>
                         </li>
                     </ul>
                     </nav>

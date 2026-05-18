@@ -13,7 +13,26 @@ export default function Log() {
     password: '',
     telefon: ''
   });
+
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
+  //aratam alert
+  const showError = (message) => {
+    setError(message);
+
+    setTimeout(() => {
+      setError(null);
+    }, 3500);
+  };
+
+  const showSuccess = (message) => {
+    setSuccess(message);
+
+    setTimeout(() => {
+      setSuccess(null);
+    }, 3500);
+  };
 
   const handleInputChange = (e) => {
     setFormData({
@@ -26,16 +45,26 @@ export default function Log() {
     e.preventDefault();
     const { username, email, password, telefon } = formData;
 
+    const phoneRegex = /^(\+40|0)\d{9}$/;
+
+    if (!phoneRegex.test(telefon)) {
+      showError("Introdu un număr de telefon valid. Exemplu: 0712345678 sau +40712345678");
+      return;
+    }
+
     try {
       const response = await registerUser(email, password, username, telefon);
 
-      localStorage.setItem('token', response.accessToken);
+       console.log("User registered:", response);
 
-      console.log("User registered:", response);
-      navigate("/main");
-      // Poți să redirecționezi utilizatorul sau să-i arăți un mesaj de succes
+        showSuccess("Contul a fost creat. Mesajul de activare a fost trimis pe email.");
+
+        setTimeout(() => {
+          setActive(false);
+        }, 1500);
+        
     } catch (error) {
-      setError('Eroare la înregistrare: ' + error.response.data.message);
+      showError(error.response?.data?.message || "Înregistrarea a eșuat. Încearcă din nou.");
     }
   };
 
@@ -51,8 +80,8 @@ export default function Log() {
       console.log("User logged in:", response);
       navigate("/main");
       // o sa aratam un mesage
-    } catch (error){
-      setError('Eroare la autentificare: ' + error.response.data.message);
+    }catch (error) {
+      showError(error.response?.data?.message || "Autentificarea a eșuat. Verifică datele introduse.");
     }
   }
 
@@ -60,6 +89,20 @@ export default function Log() {
   return (
     <div className="log">
       <div className={`log-container ${active ? "active" : ""}`}>
+        {error && (
+          <div className="auth-toast">
+            <i className="bx bx-error-circle"></i>
+            <span>{error}</span>
+          </div>
+        )}
+
+        {success && (
+          <div className="auth-toast success">
+            <i className="bx bx-check-circle"></i>
+            <span>{success}</span>
+          </div>
+        )}
+
         <div className="form-box login">
           <form onSubmit={HandleLogin}>
             <h1>Login</h1>
@@ -108,7 +151,6 @@ export default function Log() {
 
             <button type="submit" className="log-btn">Register</button>
           </form>
-          {error && <div className="error-message">{error}</div>} {/* Mesaj de eroare */}
         </div>
 
         <div className="toggle-box">

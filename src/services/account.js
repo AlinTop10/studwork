@@ -31,3 +31,18 @@ export const logUser = async (email, password) => {
   }
 };
 
+
+export const logoutUser = async () => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/logo`,
+      {},
+      { withCredentials: true }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+

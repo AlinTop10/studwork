@@ -245,3 +245,65 @@ form{
         font-size: 30px;
     }
 }
+
+/*alert*/
+.log-container {
+  position: relative;
+}
+
+.auth-toast {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+
+  width: calc(100% - 48px);
+  max-width: 480px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: 14px;
+
+  background: #fff1f1;
+  border: 1px solid #ffd0d0;
+  color: #7a1f1f;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  animation: toastIn 0.25s ease;
+}
+
+.auth-toast i {
+  font-size: 22px;
+  color: #d92d20;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+
+.auth-toast.success {
+  background: #effaf3;
+  border: 1px solid #cdeed8;
+  color: #14532d;
+}
+
+.auth-toast.success i {
+  color: #16a34a;
+}
