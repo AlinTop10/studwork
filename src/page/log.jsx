@@ -76,7 +76,7 @@ export default function Log() {
       const response = await logUser(email, password);
 
       localStorage.setItem('token', response.accessToken);
-
+      localStorage.setItem('user', JSON.stringify(response.user));
       console.log("User logged in:", response);
       navigate("/main");
       // o sa aratam un mesage

@@ -5,6 +5,9 @@ import { logoutUser } from "../services/account";
 
 export default function Main() {
     const navigate = useNavigate();
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    const userName = savedUser?.nume || "Utilizator";
+    const userInitial = userName.charAt(0).toUpperCase();
 
     const handleLogout = async () => {
     try {
@@ -13,6 +16,7 @@ export default function Main() {
         console.log("Logout error:", error);
     } finally {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         navigate("/login", { replace: true });
     }
     };
@@ -38,9 +42,9 @@ export default function Main() {
                 <div className="layout">
                     <aside className="sidebar">
                         <div className="sb-card">
-                            <div className="sb-avatar">D</div>
+                            <div className="sb-avatar">{userInitial}</div>
                             <div className="sb-user">
-                                <div className="sb-name">Davyd</div>
+                                <div className="sb-name">{userName}</div>
                                 <div className="sb-role">Student / Helper</div>
                             </div>
                         </div>
