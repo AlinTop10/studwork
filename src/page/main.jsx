@@ -2,12 +2,16 @@ import Footer from "../components/Footer";
 import "./main.css";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/account";
+import RequestForm from "../components/RequestForm";
+import { useState } from "react";
 
 export default function Main() {
     const navigate = useNavigate();
     const savedUser = JSON.parse(localStorage.getItem("user"));
     const userName = savedUser?.nume || "Utilizator";
     const userInitial = userName.charAt(0).toUpperCase();
+
+    const [showRequestForm, setShowRequestForm] = useState(false);
 
     const handleLogout = async () => {
     try {
@@ -84,34 +88,43 @@ export default function Main() {
                                 <p className="content-subtitle">Creează o cerere rapid și sigur.</p>
                             </div>
 
-                            <button className="content-primary">
-                                <i className="bx bx-plus" />
-                                Creează cerere
-                            </button>
+                                <button 
+                                    className="content-primary"
+                                    onClick={() => setShowRequestForm(true)}
+                                >
+                                    <i className="bx bx-plus" />
+                                    Creează cerere
+                                </button>
                         </div>
 
                         <div className="page-card">
-                            <h2>Bun venit!</h2>
+                        {showRequestForm ? (
+                            <RequestForm />
+                            ) : (
+                                <>
+                                <h2>Bun venit!</h2>
                                 <p>
-                                    Aici vei putea crea și gestiona cererile tale.  
+                                    Aici vei putea crea și gestiona cererile tale.
                                     Pentru început, apasă pe <strong>„Creează cerere”</strong> — formularul va apărea în această zonă.
                                 </p>
 
                                 <div className="page-hint">
                                     <div className="hint-row">
-                                        <span className="hint-dot"></span>
-                                        Completezi ce ai nevoie (ex: tip serviciu, locație, dată).
+                                    <span className="hint-dot"></span>
+                                    Completezi ce ai nevoie (ex: tip serviciu, locație, dată).
                                     </div>
                                     <div className="hint-row">
-                                        <span className="hint-dot"></span>
-                                        Trimiți cererea și primești răspuns.
+                                    <span className="hint-dot"></span>
+                                    Trimiți cererea și primești răspuns.
                                     </div>
                                     <div className="hint-row">
-                                        <span className="hint-dot"></span>
-                                        Urmărești statusul cererii.
+                                    <span className="hint-dot"></span>
+                                    Urmărești statusul cererii.
                                     </div>
                                 </div>
-                        </div>
+                                </>
+                        )}
+</div>
                     </main>
                 </div>
             </div>
