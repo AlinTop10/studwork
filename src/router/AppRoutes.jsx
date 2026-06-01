@@ -4,11 +4,12 @@ import Main from "../page/main";
 import Mains from "../page/mains";
 import Log from "../page/log"
 import ProtectedRoute from "./ProtectedRoute";
-
+import AccountActivated from '../page/AccountActivated';
 
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* <Route path="/acctivate" element={<AccountActivated/>}/>  TREBUIE SA FAC*/}
       <Route path="/" element={<Mains />}/> 
       <Route path="/login" element={<Log/>}/>
       <Route path="/reg" element={<Log/>}/>
