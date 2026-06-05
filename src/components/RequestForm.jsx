@@ -1,17 +1,31 @@
 import { useState } from "react";
 import "../css/RequestForm.css";
+import { cerereRequest } from "../services/request";
 
 
 export default function RequestForm() {
   const [formData, setFormData] = useState({
-    titlu: "",
-    categorie: "",
-    descriere: "",
-    locatie: "",
+    detalii: "",
+    nr_persoane: 1,
     data: "",
     ora: "",
-    buget: ""
+    plata: "",
+    moneda: "RON",
+    preferinta_gender: "ORICARE"
   });
+
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
+
+  const showSuccess = (message) => {
+    setSuccess(message);
+    setTimeout(() => setSuccess(null), 3500);
+  };
+
+  const showError = (message) => {
+    setError(message);
+    setTimeout(() => setError(null), 3500);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -20,69 +34,71 @@ export default function RequestForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Cerere nouă:", formData);
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    console.log(savedUser.id)
 
-    // aici mai târziu trimitem datele la backend
+    const cerereData = {
+      idUser: savedUser.id,
+      detalii: formData.detalii,
+      nr_persoane: Number(formData.nr_persoane),
+      ora: `${formData.data} ${formData.ora}`,
+      plata: Number(formData.plata),
+      moneda: formData.moneda,
+      preferinta_gender: formData.preferinta_gender
+    };
+
+    try{
+      const response = await cerereRequest(cerereData);
+      console.log("cerere salvata:", response);
+      showSuccess("Cererea a fost publicată cu succes!");
+    }catch(error) {
+      showError(error.response?.data?.message || "Eroare la publicarea cererii.");
+    }
   };
 
   return (
     <form className="request-form" onSubmit={handleSubmit}>
+      {success && (
+        <div className="request-toast success">
+          <i className="bx bx-check-circle"></i>
+          <span>{success}</span>
+        </div>
+      )}
+
+      {error && (
+        <div className="request-toast error">
+          <i className="bx bx-error-circle"></i>
+          <span>{error}</span>
+        </div>
+      )}
       <h2>Creează o cerere</h2>
+
       <p className="request-form-subtitle">
         Completează detaliile cererii tale pentru ca studenții disponibili să poată răspunde.
       </p>
 
       <div className="form-grid">
-        <div className="form-group">
-          <label>Titlu cerere</label>
-          <input
-            type="text"
-            name="titlu"
-            placeholder="Ex: Am nevoie de ajutor la mutare"
-            value={formData.titlu}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Categorie</label>
-          <select
-            name="categorie"
-            value={formData.categorie}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Alege categoria</option>
-            <option value="curatenie">Curățenie</option>
-            <option value="mutare">Mutare</option>
-            <option value="evenimente">Evenimente</option>
-            <option value="cumparaturi">Cumpărături</option>
-            <option value="alte_servicii">Alte servicii</option>
-          </select>
-        </div>
-
         <div className="form-group full">
-          <label>Descriere</label>
+          <label>Detalii cerere</label>
           <textarea
-            name="descriere"
-            placeholder="Descrie pe scurt ce ai nevoie..."
-            value={formData.descriere}
+            name="detalii"
+            placeholder="Ex: Am nevoie de ajutor la mutare, 2 ore, etajul 3..."
+            value={formData.detalii}
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="form-group">
-          <label>Locație</label>
+          <label>Număr persoane</label>
           <input
-            type="text"
-            name="locatie"
-            placeholder="Ex: Galați, Mazepa"
-            value={formData.locatie}
+            type="number"
+            name="nr_persoane"
+            min="1"
+            value={formData.nr_persoane}
             onChange={handleChange}
             required
           />
@@ -106,19 +122,48 @@ export default function RequestForm() {
             name="ora"
             value={formData.ora}
             onChange={handleChange}
+            required
           />
         </div>
 
         <div className="form-group">
-          <label>Buget estimativ</label>
+          <label>Plata</label>
           <input
             type="number"
-            name="buget"
+            name="plata"
             placeholder="Ex: 100"
-            value={formData.buget}
+            min="1"
+            value={formData.plata}
             onChange={handleChange}
             required
           />
+        </div>
+
+        <div className="form-group">
+          <label>Moneda</label>
+          <select
+            name="moneda"
+            value={formData.moneda}
+            onChange={handleChange}
+            required
+          >
+            <option value="RON">RON</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Preferință gen</label>
+          <select
+            name="preferinta_gender"
+            value={formData.preferinta_gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="ORICARE">Oricare</option>
+            <option value="DOAR_FETE">Doar fete</option>
+            <option value="DOAR_BAIETI">Doar băieți</option>
+          </select>
         </div>
       </div>
 

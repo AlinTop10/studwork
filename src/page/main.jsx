@@ -90,10 +90,10 @@ export default function Main() {
 
                                 <button 
                                     className="content-primary"
-                                    onClick={() => setShowRequestForm(true)}
+                                    onClick={() => setShowRequestForm(!showRequestForm)}
                                 >
-                                    <i className="bx bx-plus" />
-                                    Creează cerere
+                                    <i className={`bx ${showRequestForm ? "bx-minus" : "bx-plus"}`} />
+                                    {showRequestForm ? "Închide cererea" : "Creează cerere"}
                                 </button>
                         </div>
 
