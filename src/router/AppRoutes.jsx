@@ -9,10 +9,12 @@ import AccountActivated from '../page/AccountActivated';
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* <Route path="/acctivate" element={<AccountActivated/>}/>  TREBUIE SA FAC*/}
       <Route path="/" element={<Mains />}/> 
       <Route path="/login" element={<Log/>}/>
       <Route path="/reg" element={<Log/>}/>
+
+      <Route path="/activated" element={<AccountActivated/>}/>  
+
       <Route
         path="/main"
         element={

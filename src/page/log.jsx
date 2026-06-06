@@ -23,7 +23,7 @@ export default function Log() {
 
     setTimeout(() => {
       setError(null);
-    }, 3500);
+    }, 4500);
   };
 
   const showSuccess = (message) => {
@@ -31,7 +31,7 @@ export default function Log() {
 
     setTimeout(() => {
       setSuccess(null);
-    }, 3500);
+    }, 4500);
   };
 
   const handleInputChange = (e) => {
