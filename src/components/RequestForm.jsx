@@ -4,7 +4,7 @@ import { cerereRequest } from "../services/request";
 
 
 export default function RequestForm() {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     detalii: "",
     nr_persoane: 1,
     data: "",
@@ -12,7 +12,9 @@ export default function RequestForm() {
     plata: "",
     moneda: "RON",
     preferinta_gender: "ORICARE"
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
@@ -53,7 +55,9 @@ export default function RequestForm() {
     try{
       const response = await cerereRequest(cerereData);
       console.log("cerere salvata:", response);
+
       showSuccess("Cererea a fost publicată cu succes!");
+      setFormData(initialFormData);
     }catch(error) {
       showError(error.response?.data?.message || "Eroare la publicarea cererii.");
     }
