@@ -4,12 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/account";
 import RequestForm from "../components/RequestForm";
 import { useState } from "react";
+import MyRequests from "../components/MyRequests";
 
 export default function Main() {
     const navigate = useNavigate();
     const savedUser = JSON.parse(localStorage.getItem("user"));
     const userName = savedUser?.nume || "Utilizator";
     const userInitial = userName.charAt(0).toUpperCase();
+
+
+    const [activePage, setActivePage] = useState("dashboard");
 
     const [showRequestForm, setShowRequestForm] = useState(false);
 
@@ -54,12 +58,18 @@ export default function Main() {
                         </div>
 
                         <nav className="sb-nav">
-                            <button className="sb-item active">
+                            <button 
+                                className={`sb-item ${activePage === "dashboard" ? "active" : ""}`}
+                                onClick={() => setActivePage("dashboard")}
+                            >
                                 <i className="bx bx-grid-alt" />
                                 <span>Dashboard</span>
                             </button>
 
-                            <button className="sb-item">
+                            <button 
+                                className={`sb-item ${activePage === "requests" ? "active" : ""}`}
+                                onClick={() => setActivePage("requests")}
+                            >
                                 <i className="bx bx-briefcase" />
                                 <span>Cereri</span>
                             </button>
@@ -98,8 +108,10 @@ export default function Main() {
                         </div>
 
                         <div className="page-card">
-                        {showRequestForm ? (
-                            <RequestForm />
+                            {activePage === "requests" ? (
+                                <MyRequests />
+                            ) : showRequestForm ? (
+                                <RequestForm />
                             ) : (
                                 <>
                                 <h2>Bun venit!</h2>
@@ -122,13 +134,13 @@ export default function Main() {
                                     Urmărești statusul cererii.
                                     </div>
                                 </div>
-                                </>
+                            </>
                         )}
-</div>
+                        </div>
                     </main>
-                </div>
             </div>
-            <Footer/>
+        </div>
+    <Footer/>
         </>
     );
 }

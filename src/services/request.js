@@ -9,3 +9,9 @@ export const cerereRequest = async (cerereData) => {
 
     return response.data;
 };
+
+export const getMyRequests = async (idUser) => {
+    const response = await axios.get(`${API_URL}/user/${idUser}`);
+
+    return response.data;
+};

@@ -1,0 +1,98 @@
+.my-requests-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.my-requests-header p {
+  margin-top: 6px;
+  opacity: 0.75;
+}
+
+.requests-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.request-card {
+  border: 1px solid #e9e9ef;
+  border-radius: 18px;
+  padding: 16px;
+  background: #fff;
+}
+
+.request-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.status-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.status-badge.open {
+  background: #effaf3;
+  color: #15803d;
+}
+
+.status-badge.reserved {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.status-badge.done {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.request-price {
+  font-weight: 600;
+  color: #4824ff;
+}
+
+.request-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.request-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  opacity: 0.75;
+}
+
+.request-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.request-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.request-actions button {
+  border: none;
+  background: #4824ff;
+  color: #fff;
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.request-actions button.secondary {
+  background: #f2f2f5;
+  color: #222;
+}
