@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getClaimByToken } from "../services/claim";
 import "../css/ClaimJob.css";
+import { createCheckoutSession } from "../services/payment";
 
 export default function ClaimJob() {
   const { token } = useParams();
@@ -25,6 +26,16 @@ export default function ClaimJob() {
 
     loadClaim();
   }, [token]);
+
+  const handleTakeJob = async () => {
+  try {
+    const data = await createCheckoutSession(token);
+
+    window.location.href = data.url;
+  } catch (error) {
+    setError(error.response?.data?.message || "Nu s-a putut porni plata.");
+  }
+};
 
   if (loading) {
     return <div className="claim-page">Se încarcă...</div>;
@@ -92,7 +103,7 @@ export default function ClaimJob() {
         <button
           className="claim-button"
           disabled={!accepted || !available}
-          onClick={() => console.log("Urmează plata de 5 lei")}
+          onClick={handleTakeJob}
         >
           Ia lucrarea
         </button>
