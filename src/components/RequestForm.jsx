@@ -40,6 +40,11 @@ export default function RequestForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(formData.data < today) {
+      showError("Nu poți alege o dată din trecut.");
+      return;
+    }
+
     const savedUser = JSON.parse(localStorage.getItem("user"));
     console.log(savedUser.id)
 
@@ -64,6 +69,8 @@ export default function RequestForm() {
       showError(error.response?.data?.message || "Eroare la publicarea cererii.");
     }
   };
+
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <form className="request-form" onSubmit={handleSubmit}>
@@ -127,6 +134,7 @@ export default function RequestForm() {
           <input
             type="date"
             name="data"
+            min={today}
             value={formData.data}
             onChange={handleChange}
             required
