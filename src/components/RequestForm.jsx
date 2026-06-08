@@ -6,6 +6,7 @@ import { cerereRequest } from "../services/request";
 export default function RequestForm() {
   const initialFormData = {
     detalii: "",
+    locatie: "",
     nr_persoane: 1,
     data: "",
     ora: "",
@@ -45,6 +46,7 @@ export default function RequestForm() {
     const cerereData = {
       idUser: savedUser.id,
       detalii: formData.detalii,
+      locatie: formData.locatie,
       nr_persoane: Number(formData.nr_persoane),
       ora: `${formData.data} ${formData.ora}`,
       plata: Number(formData.plata),
@@ -91,6 +93,18 @@ export default function RequestForm() {
             name="detalii"
             placeholder="Ex: Am nevoie de ajutor la mutare, 2 ore, etajul 3..."
             value={formData.detalii}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group full">
+          <label>Locație</label>
+          <input
+            type="text"
+            name="locatie"
+            placeholder="Ex: Galați, Mazepa / Online"
+            value={formData.locatie}
             onChange={handleChange}
             required
           />
