@@ -8,13 +8,16 @@ import MyRequests from "../components/MyRequests";
 
 export default function Main() {
     const navigate = useNavigate();
+
     const savedUser = JSON.parse(localStorage.getItem("user"));
+
     const userName = savedUser?.nume || "Utilizator";
     const userInitial = userName.charAt(0).toUpperCase();
+    const isActivated = savedUser?.isActivated === true;
 
 
     const [activePage, setActivePage] = useState("dashboard");
-
+    const [warning, setWarning] = useState(null);
     const [showRequestForm, setShowRequestForm] = useState(false);
 
     const handleLogout = async () => {
@@ -27,6 +30,14 @@ export default function Main() {
         localStorage.removeItem("user");
         navigate("/login", { replace: true });
     }
+    };
+
+    const showWarning = (message) => {
+        setWarning(message);
+
+        setTimeout(() => {
+            setWarning(null);
+        }, 3500);
     };
 
     return (
@@ -92,6 +103,12 @@ export default function Main() {
                     </aside>
 
                     <main className="content">
+                        {warning && (
+                            <div className="main-toast warning">
+                                <i className="bx bx-error-circle"></i>
+                                <span>{warning}</span>
+                            </div>
+                        )}
                         <div className="content-header">
                             <div>
                                 <h2 className="content-title">Cerere</h2>
@@ -100,7 +117,14 @@ export default function Main() {
 
                                 <button 
                                     className="content-primary"
-                                    onClick={() => setShowRequestForm(!showRequestForm)}
+                                    onClick={() => {
+                                        if(!isActivated) {
+                                            showWarning("trebuie să activezi contul din email înainte să poți depune cereri.");
+                                            return;
+                                        }
+                                    
+                                        setShowRequestForm(!showRequestForm);
+                                    }}
                                 >
                                     <i className={`bx ${showRequestForm ? "bx-minus" : "bx-plus"}`} />
                                     {showRequestForm ? "Închide cererea" : "Creează cerere"}
