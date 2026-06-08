@@ -5,6 +5,7 @@ import Mains from "../page/mains";
 import Log from "../page/log"
 import ProtectedRoute from "./ProtectedRoute";
 import AccountActivated from '../page/AccountActivated';
+import ClaimJob from "../page/ClaimJob";
 
 const AppRoutes = () => {
   return (
@@ -13,7 +14,9 @@ const AppRoutes = () => {
       <Route path="/login" element={<Log/>}/>
       <Route path="/reg" element={<Log/>}/>
 
-      <Route path="/activated" element={<AccountActivated/>}/>  
+      <Route path="/activated" element={<AccountActivated/>}/>
+       
+      <Route path="/claim/:token" element={<ClaimJob />} /> 
 
       <Route
         path="/main"
